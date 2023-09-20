@@ -33,13 +33,10 @@ public class DeleteCommand extends Command {
         if (taskList.size() == 0) {
             return new BarbieListEmptyException().getMessage();
         }
-<<<<<<< HEAD
-        String taskToDel = taskList.get(taskNumber).toString();
-=======
+
 
         String taskToDel = taskList.get(taskNumber).toString();
 
->>>>>>> master
         taskList.remove(this.taskNumber);
         Storage.deleteLine(taskNumber);
         return Ui.del() + "\n" + taskToDel;
