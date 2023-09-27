@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,8 +34,6 @@ public class Storage {
      * @param desc the description of the Task
      */
     public static void addToList(String desc) {
-        assert Objects.equals(desc.split(" ", 2)[0], "T") : "Item added should be a T class";
-
         String line = "T" + "," + 0 + "," + desc + "\n";
         try {
             Files.write(path, line.getBytes(), StandardOpenOption.APPEND);
@@ -161,7 +158,7 @@ public class Storage {
             if (lineToChange >= 0 && lineToChange < lines.size()) {
                 String[] newContent = lines.get(lineToChange).split(",");
                 newContent[1] = status;
-                lines.set(lineToChange, Arrays.stream(newContent).reduce("", (x, acc) -> x + "," + acc));
+                lines.set(lineToChange, arrayToString(newContent));
                 Files.write(path, lines);
             } else {
                 throw new IllegalArgumentException("Invalid line number to change.");
@@ -169,6 +166,17 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static String arrayToString(String[] arr) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            result.append(arr[i]);
+            if (i < arr.length - 1) {
+                result.append(",");
+            }
+        }
+        return result.toString();
     }
 
     /**

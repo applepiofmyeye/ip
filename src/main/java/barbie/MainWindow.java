@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -22,10 +23,16 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Button viewButton;
+
+
 
     private Barbie barbie;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Elizabeth.png"));
+
+
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Mochi.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Barbie.png"));
 
     /**
@@ -34,6 +41,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
     }
 
     /**
@@ -61,7 +69,6 @@ public class MainWindow extends AnchorPane {
         if (barbie.getDoExit()) {
             Platform.exit();
         }
-
-
     }
+
 }
